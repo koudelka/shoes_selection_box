@@ -1,5 +1,6 @@
 require File.dirname(__FILE__)+'/point'
 require File.dirname(__FILE__)+'/area'
+require File.dirname(__FILE__)+'/../ext/lib/shoes/shape'
 
 class SelectionBox
   attr_accessor :click_point
