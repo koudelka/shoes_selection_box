@@ -1,5 +1,5 @@
-require File.dirname(__FILE__)+'/point'
-require File.dirname(__FILE__)+'/area'
+require File.dirname(__FILE__)+'/shoes_shared/point'
+require File.dirname(__FILE__)+'/shoes_shared/area'
 require File.dirname(__FILE__)+'/../ext/lib/shoes/shape'
 
 class SelectionBox
