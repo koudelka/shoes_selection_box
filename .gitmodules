@@ -1,0 +1,3 @@
+[submodule "lib/shoes_shared"]
+	path = lib/shoes_shared
+	url = git://github.com/koudelka/shoes_shared.git
