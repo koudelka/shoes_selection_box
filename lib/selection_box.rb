@@ -1,4 +1,4 @@
-require File.dirname(__FILE__)+'/shoes_shared/shoes_shared'
+require 'lib/shoes_shared/shoes_shared'
 
 class SelectionBox
   attr_accessor :click_point
