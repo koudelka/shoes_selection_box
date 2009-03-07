@@ -6,7 +6,7 @@ Shoes.app do
   $app = self
   Shoes.show_log
 
-  selection_box = SelectionBox.new($app, {:fill => gray(0.6, 0.5), :strokewidth => 1})
+  selection_box = SelectionBox.new($app.slot, {:fill => gray(0.6, 0.5), :strokewidth => 1})
   objects = []
   25.times do
     objects << rect((0..500).rand,(0..500).rand,50,50)
@@ -36,11 +36,8 @@ Shoes.app do
 
     making_selection_box = false
 
-    selected_area = selection_box.released_at(release_point)
-    objects.each do |obj|
-      if obj.intersects?(selected_area)
-        obj.style({:fill => obj.style[:fill].invert})
-      end
+    selection_box.released_at(release_point).each do |obj|
+      obj.style({:fill => obj.style[:fill].invert})
     end
   end
 

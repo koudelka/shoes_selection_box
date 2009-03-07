@@ -1,22 +1,23 @@
 require File.dirname(__FILE__)+'/shoes_shared/point'
 require File.dirname(__FILE__)+'/shoes_shared/area'
 require File.dirname(__FILE__)+'/../ext/lib/shoes/shape'
+require 'rubygems'
 
 class SelectionBox
   attr_accessor :click_point
   attr_accessor :rectangle
-  attr_accessor :app
+  attr_accessor :slot
   attr_accessor :styles
 
-  def initialize(app, styles)
-    @app = app
+  def initialize(slot, styles)
+    @slot = slot
     @styles = styles
   end
 
   def start_at(point)
     @click_point = point
     rectangle.remove if !rectangle.nil? # protects from dragging outside window and releasing
-    @rectangle = app.rect(@click_point.x, @click_point.y, 0, 0)
+    @rectangle = slot.rect(@click_point.x, @click_point.y, 0, 0)
     rectangle.style(styles)
   end
 
@@ -31,7 +32,7 @@ class SelectionBox
     rectangle.width = new_width
     rectangle.height = new_height
 
-    coverage
+    selected_objects(coverage)
   end
 
   def released_at(point)
@@ -40,12 +41,21 @@ class SelectionBox
     rectangle.remove
     @rectangle = nil #hopefully Shoes will let it get GC'd
 
-    area
+    selected_objects(area)
   end
 
   def coverage
     Area.new(Point.new(left, top), Point.new(left+width, top+height))
   end
+
+  def selected_objects(area)
+    slot.contents.collect do |obj|
+      next if obj.nil? or !obj.is_a?(Shoes::Shape)
+
+      obj if obj.intersects?(area)
+    end.compact
+  end
+
 
   def to_s
     coverage.to_s
