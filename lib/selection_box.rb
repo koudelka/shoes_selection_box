@@ -1,6 +1,4 @@
-require File.dirname(__FILE__)+'/shoes_shared/lib/point'
-require File.dirname(__FILE__)+'/shoes_shared/lib/area'
-require File.dirname(__FILE__)+'/shoes_shared/ext/lib/shoes/shape'
+require File.dirname(__FILE__)+'/shoes_shared/shoes_shared'
 
 class SelectionBox
   attr_accessor :click_point
