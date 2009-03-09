@@ -47,7 +47,7 @@ class SelectionBox
 
   def selected_objects(area)
     slot.contents.collect do |obj|
-      next if obj.nil? or !obj.is_a?(Shoes::Shape)
+      next if obj.nil? or !obj.is_a?(Shoes::Shape) or obj == rectangle
 
       obj if obj.intersects?(area)
     end.compact
