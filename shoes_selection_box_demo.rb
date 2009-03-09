@@ -15,12 +15,8 @@ Shoes.app do
     objects[-2].style({:fill => rgb((0..255).rand, (0..255).rand , (0..255).rand)})
   end
 
-  making_selection_box = false
-
   click do |button, x, y|
     click_point = Point.new(x, y)
-
-    making_selection_box = true
 
     selection_box.start_at(click_point)
   end
@@ -28,13 +24,11 @@ Shoes.app do
   motion do |x, y|
     motion_point = Point.new(x, y)
 
-    selection_box.dragged_to(motion_point) if making_selection_box
+    selection_box.dragged_to(motion_point)
   end
 
   release do |button, x, y|
     release_point = Point.new(x, y)
-
-    making_selection_box = false
 
     selection_box.released_at(release_point).each do |obj|
       obj.style({:fill => obj.style[:fill].invert})

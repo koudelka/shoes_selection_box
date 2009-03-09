@@ -19,6 +19,7 @@ class SelectionBox
   end
 
   def dragged_to(point)
+    return if click_point.nil?
     new_left = (click_point.x <= point.x ? click_point.x : point.x)
     new_top  = (click_point.y <= point.y ? click_point.y : point.y)
 
@@ -37,6 +38,7 @@ class SelectionBox
 
     rectangle.remove
     @rectangle = nil #hopefully Shoes will let it get GC'd
+    @click_point = nil
 
     selected_objects(area)
   end
