@@ -34,7 +34,7 @@ class SelectionBox
   end
 
   def released_at(point)
-    [] if @click_point.nil?
+    return [] if @click_point.nil?
     area = coverage
 
     rectangle.remove
